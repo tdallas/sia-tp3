@@ -28,7 +28,7 @@ or_input_data = numpy.array([
         [1, 1]
     ])
 # OR expected result for input
-or_input_expected_data = numpy.array([1, 1, -1, -1])
+or_input_expected_data = numpy.array([1, 1, -1, 1])
 
 or_perceptron = SimplePerceptron(or_input_data, or_input_expected_data)
 or_perceptron.train()
