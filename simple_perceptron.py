@@ -23,13 +23,20 @@ class SimplePerceptron():
         return self.activation_function(dot_product)
  
     def train(self):
+        # running till iterations
         for _ in range(self.iterations):
+            # zip training inputs with corresponding expected values
             for input, expected_value in zip(self.training_inputs, self.training_expected_values):
+                # add bias=1 to input
                 input_with_bias = numpy.insert(input, 0, 1)
+                # calculate prediction
                 prediction = self.predict(input_with_bias)
+                # calculate error
                 error = expected_value - prediction
+                # update weights
                 self.weights = self.weights + self.eta * error * input_with_bias
 
     def guess(self, input):
+        # add bias to input (for dot product stuff)
         return self.predict(numpy.insert(input, 0, 1))
     
