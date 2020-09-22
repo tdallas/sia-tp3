@@ -1,12 +1,18 @@
-from sign_function import SignFunction
-from sigmoide_function import SigmoideFunction
+from simple_perceptron import SimplePerceptron
 
-sign = SignFunction()
-print("SIGN FUNCTION")
-print(sign.evaluate(10))
-print(sign.evaluate(0.5))
+def default_activation(value):
+    if value >= 0: return 1
+    return -1
 
-sign = SigmoideFunction()
-print("SIGMOIDE FUNCTION")
-print(sign.evaluate(10))
-print(sign.evaluate(0.5))
+input_data= [[-1,-1], [-1,1], [1,-1], [1,1]]
+expected_values = [-1, -1, -1, 1]
+
+perceptron = SimplePerceptron(input_data, expected_values, default_activation)
+
+perceptron.train_perceptron()
+
+print("[ -1 && -1 =", perceptron.guess([-1,-1]),
+        "]\n [ -1 && 1 =" , perceptron.guess([-1, 1]),
+        "]\n [ 1 && -1 =", perceptron.guess([1, -1]),
+        "]\n [ 1 && 1 =", perceptron.guess([1, 1]), "]"
+    )
