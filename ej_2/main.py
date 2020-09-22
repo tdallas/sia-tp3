@@ -1,29 +1,19 @@
+from math import e
+import numpy as numpy
 from simple_perceptron import SimplePerceptron
 from parser import Parser
-import numpy as numpy
 
 parser = Parser('ej_2/input.csv', 'ej_2/output.csv')
 
-print(parser.get_outputs())
-print(parser.get_inputs())
+def sigmoide(value):
+    return 1 + (e ** (- value))
 
-# print('AND: ')
-# # AND input data
-# input_data = numpy.array([
-#         [-1, -1],
-#         [-1, 1],
-#         [1, -1],
-#         [1, 1]
-#     ])
-# # AND expected result for input
-# input_expected_data = numpy.array([-1, -1, -1, 1])
+def de_sigmoide(value):
+    return - (e ** ( - value))
 
-# perceptron = SimplePerceptron(input_data, input_expected_data)
-# perceptron.train()
-# print(perceptron.guess([-1,-1]))
-# print(perceptron.guess([-1,1]))
-# print(perceptron.guess([1,-1]))
-# print(perceptron.guess([1,1]))
+perceptron = SimplePerceptron(parser.get_inputs(), parser.get_outputs(), sigmoide, de_sigmoide)
+perceptron.train()
+print(perceptron.guess([4.4793,-4.0765,4.4558]))
 
 # print('OR: ')
 # # OR input data

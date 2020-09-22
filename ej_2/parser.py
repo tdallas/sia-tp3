@@ -12,7 +12,7 @@ class Parser():
         return pd.read_csv(outputs_path).values
 
     def get_outputs(self):
-        return self.inputs
+        return self.outputs
     
     def get_inputs(self):
-        return self.outputs
+        return self.inputs

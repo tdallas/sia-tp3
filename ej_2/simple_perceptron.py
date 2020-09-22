@@ -2,21 +2,19 @@ import numpy as numpy
 
 class SimplePerceptron():
     
-    def __init__(self, training_inputs, training_expected_values, eta=0.25, iterations=1000):
+    def __init__(self, training_inputs, training_expected_values, activation_function, de_activation_function, eta=0.25, iterations=100):
         self.eta = eta
         self.iterations = iterations
         self.input_size = len(training_inputs[0])
         self.training_inputs = numpy.array(training_inputs)
         self.training_expected_values = training_expected_values
         self.weights = self.generate_random_weights()
+        self.activation_function = activation_function
+        self.de_activation_function = de_activation_function
     
     def generate_random_weights(self):
         return numpy.array(numpy.random.rand(self.input_size + 1))
 
-    def activation_function(self, x):
-        if x >= 0: return 1
-        return -1
- 
     def predict(self, input):
         dot_product = self.weights.T.dot(input)
         return self.activation_function(dot_product)
@@ -36,7 +34,7 @@ class SimplePerceptron():
                 # calculate error
                 error = expected_value - prediction
                 # update weights
-                self.weights = self.weights + self.eta * error * input_with_bias
+                self.weights = self.weights + self.eta * error * self.de_activation_function(prediction) * input_with_bias 
 
     def guess(self, input):
         # add bias to input (for dot product stuff)
