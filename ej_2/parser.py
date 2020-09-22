@@ -6,10 +6,10 @@ class Parser():
         self.outputs = self.parse_outputs(output_path)
 
     def parse_inputs(self, inputs_path):
-        return pd.read_csv(inputs_path)
+        return pd.read_csv(inputs_path).values
 
     def parse_outputs(self, outputs_path):
-        return pd.read_csv(outputs_path)
+        return pd.read_csv(outputs_path).values
 
     def get_outputs(self):
         return self.inputs
