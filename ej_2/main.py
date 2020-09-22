@@ -1,5 +1,11 @@
 from simple_perceptron import SimplePerceptron
+from parser import Parser
 import numpy as numpy
+
+parser = Parser('ej_2/input.csv', 'ej_2/output.csv')
+
+print(parser.get_outputs())
+print(parser.get_inputs())
 
 # print('AND: ')
 # # AND input data
@@ -38,20 +44,20 @@ import numpy as numpy
 # print(or_perceptron.guess([1,1]))
 
 
-print('XOR: ')
-# OR input data
-xor_input_data = numpy.array([
-        [-1, 1],
-        [1, -1],
-        [-1, -1],
-        [1, 1]
-    ])
-# OR expected result for input
-xor_input_expected_data = numpy.array([1, 1, -1, -1])
+# print('XOR: ')
+# # OR input data
+# xor_input_data = numpy.array([
+#         [-1, 1],
+#         [1, -1],
+#         [-1, -1],
+#         [1, 1]
+#     ])
+# # OR expected result for input
+# xor_input_expected_data = numpy.array([1, 1, -1, -1])
 
-xor_perceptron = SimplePerceptron(xor_input_data, xor_input_expected_data)
-xor_perceptron.train()
-print(xor_perceptron.guess([-1,1]))
-print(xor_perceptron.guess([1,-1]))
-print(xor_perceptron.guess([-1,-1]))
-print(xor_perceptron.guess([1,1]))
+# xor_perceptron = SimplePerceptron(xor_input_data, xor_input_expected_data)
+# xor_perceptron.train()
+# print(xor_perceptron.guess([-1,1]))
+# print(xor_perceptron.guess([1,-1]))
+# print(xor_perceptron.guess([-1,-1]))
+# print(xor_perceptron.guess([1,1]))
