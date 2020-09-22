@@ -14,5 +14,6 @@ perceptron.train_perceptron()
 print("[ -1 && -1 =", perceptron.guess([-1,-1]),
         "]\n [ -1 && 1 =" , perceptron.guess([-1, 1]),
         "]\n [ 1 && -1 =", perceptron.guess([1, -1]),
-        "]\n [ 1 && 1 =", perceptron.guess([1, 1]), "]"
+        "]\n [ 1 && 1 =", perceptron.guess([1, 1]), 
+        "]"
     )

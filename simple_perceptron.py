@@ -2,7 +2,7 @@ import numpy as numpy
 from perceptron import Perceptron
 
 class SimplePerceptron():
-    def __init__(self, training_inputs, training_expected_values, sign_function, eta=0.1, error_delta=0.001, iterations=1000):
+    def __init__(self, training_inputs, training_expected_values, sign_function, eta=0.1, error_delta=0.001, iterations=4):
         self.error_delta = error_delta
         self.iterations = iterations
         self.sign_function = sign_function
@@ -15,8 +15,8 @@ class SimplePerceptron():
         self.eta = eta
     
     def predict(self, xi, bias=1):
-        # print(xi)
-        # print(self.weights)
+        print('xi', xi)
+        print('weights', self.weights)
         # print(numpy.dot(self.weights, xi))
         return self.sign_function(numpy.dot(self.weights, xi))
 
@@ -29,10 +29,12 @@ class SimplePerceptron():
             # zippeo trainingInputs -> trainingExpectedValues
             for inputs, expected_value in zip(self.training_inputs, self.training_expected_values):
                 prediction = self.predict(inputs)
+                print('prediction', prediction)
                 error = expected_value - prediction
-                print(error)
+                print('error', error)
                 for index, value in enumerate(inputs):
                     self.weights[index] += self.eta * error * value
+                
 
     def guess(self, inputs):
         new_inputs = inputs
