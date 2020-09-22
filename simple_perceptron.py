@@ -2,7 +2,7 @@ import numpy as numpy
 
 class SimplePerceptron():
     
-    def __init__(self, training_inputs, training_expected_values, eta=0.025, iterations=10000):
+    def __init__(self, training_inputs, training_expected_values, eta=0.25, iterations=1000):
         self.eta = eta
         self.iterations = iterations
         self.input_size = len(training_inputs[0])
@@ -20,6 +20,9 @@ class SimplePerceptron():
     def predict(self, input):
         dot_product = self.weights.T.dot(input)
         return self.activation_function(dot_product)
+
+    def calculate_square_error(self, expected_value, prediction):
+        return 0.5 * ((expected_value - prediction) ** 2)
  
     def train(self):
         # running till iterations
