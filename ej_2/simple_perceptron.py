@@ -2,7 +2,7 @@ import numpy as numpy
 
 class SimplePerceptron():
     
-    def __init__(self, training_inputs, training_expected_values, activation_function, de_activation_function, eta=0.25, iterations=100):
+    def __init__(self, training_inputs, training_expected_values, activation_function, de_activation_function, eta=0.25, iterations=1000):
         self.eta = eta
         self.iterations = iterations
         self.input_size = len(training_inputs[0])

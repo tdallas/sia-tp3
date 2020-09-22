@@ -6,14 +6,15 @@ from parser import Parser
 parser = Parser('ej_2/input.csv', 'ej_2/output.csv')
 
 def sigmoide(value):
-    return 1 + (e ** (- value))
+    return 1 / (1 + (e ** (- value)))
 
 def de_sigmoide(value):
-    return - (e ** ( - value))
+    return (e ** (- value)) / ((1 + (e**-value)) ** 2)
 
 perceptron = SimplePerceptron(parser.get_inputs(), parser.get_outputs(), sigmoide, de_sigmoide)
 perceptron.train()
 print(perceptron.guess([4.4793,-4.0765,4.4558]))
+print("expected value", 87.3174)
 
 # print('OR: ')
 # # OR input data
