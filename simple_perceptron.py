@@ -1,5 +1,4 @@
 import numpy as numpy
-from perceptron import Perceptron
 
 class SimplePerceptron():
     
