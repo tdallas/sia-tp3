@@ -1,19 +1,19 @@
 from simple_perceptron import SimplePerceptron
+import numpy as numpy
 
-def default_activation(value):
-    if value >= 0: return 1
-    return -1
+# AND input data
+input_data = numpy.array([
+        [-1, -1],
+        [-1, 1],
+        [1, -1],
+        [1, 1]
+    ])
+# AND expected result for input
+input_expected_data = numpy.array([-1, -1, -1, 1])
 
-input_data= [[-1,-1], [-1,1], [1,-1], [1,1]]
-expected_values = [-1, -1, -1, 1]
-
-perceptron = SimplePerceptron(input_data, expected_values, default_activation)
-
-perceptron.train_perceptron()
-
-print("[ -1 && -1 =", perceptron.guess([-1,-1]),
-        "]\n [ -1 && 1 =" , perceptron.guess([-1, 1]),
-        "]\n [ 1 && -1 =", perceptron.guess([1, -1]),
-        "]\n [ 1 && 1 =", perceptron.guess([1, 1]), 
-        "]"
-    )
+perceptron = SimplePerceptron(input_data, input_expected_data)
+perceptron.train()
+print(perceptron.guess([-1,-1]))
+print(perceptron.guess([-1,1]))
+print(perceptron.guess([1,-1]))
+print(perceptron.guess([1,1]))
