@@ -48,11 +48,18 @@ class MultilayerPerceptron():
 
     # The neural network thinks.
     def think(self, inputs):
-        output_from_layer1 = self.__sigmoid(dot(inputs, self.hidden_layers[0].synaptic_weights))
-        output_from_layer2 = self.__sigmoid(dot(output_from_layer1, self.output_layer.synaptic_weights))
-        return output_from_layer1, output_from_layer2
+        outputs = []
+        input = inputs
+        print('inputs', inputs)
+        for i in range(len(self.hidden_layers)):
+            print(i, ':',input, '|',self.hidden_layers[i].synaptic_weights)
+            input = self.__sigmoid(dot(input, self.hidden_layers[i].synaptic_weights))
+            outputs.append(input)
+        ## output for output layer
+        print('output')
+        outputs.append(self.__sigmoid(dot(input, self.output_layer.synaptic_weights)))
+        return outputs
 
-    # The neural network prints its weights
     def print_weights(self):
         print("    Hidden layers\n")
         for i in range(len(self.hidden_layers)):
