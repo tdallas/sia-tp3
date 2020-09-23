@@ -2,7 +2,7 @@ import numpy as numpy
 
 class SimplePerceptron():
     
-    def __init__(self, training_inputs, training_expected_values, activation_function, de_activation_function, eta=0.25, iterations=100):
+    def __init__(self, training_inputs, training_expected_values, activation_function, de_activation_function, eta=0.0001, iterations=1000):
         self.eta = eta
         self.iterations = iterations
         self.input_size = len(training_inputs[0])
@@ -35,7 +35,7 @@ class SimplePerceptron():
                 error = expected_value - prediction
                 # update weights
                 self.weights = self.weights + (self.eta * error * self.de_activation_function(self.weights.T.dot(input_with_bias)) * input_with_bias.T) 
-        print(self.weights)
+        print("weights: ", self.weights)
 
     def guess(self, input):
         # add bias to input (for dot product stuff)

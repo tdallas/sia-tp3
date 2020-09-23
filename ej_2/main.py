@@ -11,11 +11,24 @@ def sigmoide(value):
 def de_sigmoide(value):
     return sigmoide(value) * (1 - sigmoide(value))
 
-perceptron = SimplePerceptron(parser.get_inputs(), parser.get_outputs(), sigmoide, de_sigmoide)
+inputs = parser.get_inputs()
+outputs = parser.get_outputs()
+outputs_normalized = numpy.zeros(len(outputs))
+max_value = numpy.max(outputs)
+min_value = numpy.min(outputs)
+
+i = 0
+while(i < len(outputs)):
+    outputs_normalized[i] = (outputs[i][0] - min_value) / (max_value - min_value)
+    i += 1
+
+perceptron = SimplePerceptron(inputs, outputs_normalized, sigmoide, de_sigmoide)
 perceptron.train()
 
-print(perceptron.guess([4.4793,-4.0765,4.4558]))
-print("expected value", 87.3174)
+print("input: ", inputs[0])
+print("result value: ", perceptron.guess(inputs[0]))
+print("expected value: ", outputs_normalized[0])
 
-print(perceptron.guess([-4.1793,-4.9218,1.7664]))
-print('expected', 1.5257)
+print("input: ", inputs[1])
+print("result value: ", perceptron.guess(inputs[1]))
+print('expected value: ', outputs_normalized[1])
