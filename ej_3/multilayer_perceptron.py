@@ -32,18 +32,28 @@ class MultilayerPerceptron():
             # errors[0] is error from output layer
             errors, deltas = self.get_errors(training_set_outputs, outputs)
 
-            print('errors', errors)
-            print('deltas', deltas)
+            # print('errors', errors)
+            # print('deltas', deltas)
 
             # Calculate how much to adjust the weights by
             adjustments = self.get_adjustments(training_set_inputs, deltas, outputs)
             print('adjustments',adjustments)
-            # layer1_adjustment = training_set_inputs.T.dot(layer1_delta)
-            # layer2_adjustment = output_from_layer_1.T.dot(layer2_delta)
+            print('\noutput layer', self.output_layer.synaptic_weights)
+            print('\nhidden 0',self.hidden_layers[0].synaptic_weights)
+            print('\nhidden 1', self.hidden_layers[1].synaptic_weights)
+            
+            self.adjust_weights(adjustments)
 
-            # Adjust the weights.
-            self.hidden_layers[0].synaptic_weights += layer1_adjustment
-            self.output_layer.synaptic_weights += layer2_adjustment
+    def adjust_weights(self, adjustments):
+        indexAdjustments = len(adjustments) - 1
+        indexHiddenLayers = 0
+        while indexAdjustments > 0:
+            # print('pesos', self.hidden_layers[indexHiddenLayers].synaptic_weights)
+            # print('adjustments', adjustments[indexAdjustments])
+            self.hidden_layers[indexHiddenLayers].synaptic_weights += adjustments[indexAdjustments]
+            indexAdjustments-=1
+            indexHiddenLayers+=1
+        self.output_layer.synaptic_weights += adjustments[0] 
 
     def get_adjustments(self, training_set_inputs, deltas, outputs):
         adjustments = []
@@ -65,7 +75,7 @@ class MultilayerPerceptron():
         #hidden layers
         previous_error = output_error
         previous_delta = output_delta
-        print('pesos iniciales', self.output_layer.synaptic_weights.T)
+        # print('pesos iniciales', self.output_layer.synaptic_weights.T)
         previous_weights = self.output_layer.synaptic_weights.T
         current_hidden_layer = len(self.hidden_layers) - 1
         index = len(outputs) - 2

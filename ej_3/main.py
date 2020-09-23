@@ -16,7 +16,7 @@ layer2 = NeuronLayer(1, 5)
 # Combine the layers to create a neural network
 neural_network = MultilayerPerceptron([hidden_layer_1, hidden_layer_2], layer2)
 
-print("Stage 1) Random starting synaptic weights: ")
+# print("Stage 1) Random starting synaptic weights: ")
 neural_network.print_weights()
 
 # The training set. We have 7 examples, each consisting of 3 input values
@@ -32,7 +32,7 @@ neural_network.train(training_set_inputs, training_set_outputs, 20000)
 # neural_network.print_weights()
 
 # Test the neural network with a new situation.
-print("Stage 3) Considering a new situation [1, 1] -> ?: ")
+# print("Stage 3) Considering a new situation [1, 1] -> ?: ")
 hidden_state, output = neural_network.think(array([0, 1]))
 print(output)
 
