@@ -29,7 +29,7 @@ test_inputs = inputs[split_i:]
 test_outputs = outputs_normalized[split_i:]
 
 perceptron = SimplePerceptron(train_inputs, train_outputs, sigmoide, de_sigmoide, eta=0.1, iterations=300)
-training_accuracies, test_accuracies, iters = perceptron.train(test_inputs, test_outputs, delta=0.001)
+training_accuracies, test_accuracies, iters = perceptron.train(test_inputs, test_outputs, delta=0.001, print_data=True)
 
 plt.plot(iters, training_accuracies, label="train")
 plt.plot(iters, test_accuracies, label="test")

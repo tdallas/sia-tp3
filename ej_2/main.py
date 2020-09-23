@@ -21,12 +21,18 @@ while(i < len(outputs)):
     outputs_normalized[i] = (outputs[i][0] - min_value) / (max_value - min_value)
     i += 1
 
-perceptron = SimplePerceptron(inputs, outputs_normalized, sigmoide, de_sigmoide, eta=0.1, iterations=1000)
-perceptron.train()
+split_i = 150
+train_inputs = inputs[:split_i]
+train_outputs = outputs_normalized[:split_i]
+test_inputs = inputs[split_i:]
+test_outputs = outputs_normalized[split_i:]
+
+perceptron = SimplePerceptron(inputs, outputs_normalized, sigmoide, de_sigmoide, eta=0.1, iterations=500)
+perceptron.train(test_inputs, test_outputs)
 
 i = 0
-while(i < len(outputs_normalized)):
-    print("input: ", inputs[i])
-    print("expected value: ", outputs_normalized[i])
-    print("result value: ", perceptron.guess(inputs[i]))
+while(i < len(test_outputs)):
+    print("input: ", test_inputs[i])
+    print("expected value: ", test_outputs[i])
+    print("result value: ", perceptron.guess(test_inputs[i]))
     i += 1

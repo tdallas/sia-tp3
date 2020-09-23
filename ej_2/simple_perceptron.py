@@ -22,7 +22,7 @@ class SimplePerceptron():
     def calculate_square_error(self, expected_value, prediction):
         return 0.5 * ((expected_value - prediction) ** 2)
  
-    def train(self, test_inputs, test_expected_values, delta=0.001):
+    def train(self, test_inputs, test_expected_values, delta=0.001, print_data=False):
         test_accuracies = []
         training_accuracies = []
         iters = []
@@ -53,9 +53,10 @@ class SimplePerceptron():
             test_accuracy = test_correct_cases / len(test_expected_values)
             test_accuracies.append(test_accuracy)
             iters.append(it)
-            print("Epoch: ", it)
-            print("Training accuracy: ", training_accuracy)
-            print("Test accuracy: ", test_accuracy)
+            if(print_data):
+                print("Epoch: ", it)
+                print("Training accuracy: ", training_accuracy)
+                print("Test accuracy: ", test_accuracy)
         print("weights: ", self.weights)
         return training_accuracies, test_accuracies, iters
 
