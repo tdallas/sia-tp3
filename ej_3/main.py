@@ -5,11 +5,11 @@ from multilayer_perceptron import MultilayerPerceptron, NeuronLayer
 #Seed the random number generator
 random.seed(1)
 
-# Create layer 1 (3 neurons, each with 2 inputs)
-layer1 = NeuronLayer(3, 2)
+# Create layer 1 (4 neurons, each with 2 inputs)
+layer1 = NeuronLayer(4, 2)
 
-# Create layer 2 (a single neuron with 3 inputs)
-layer2 = NeuronLayer(1, 3)
+# Create layer 2 (a single neuron with 4 inputs)
+layer2 = NeuronLayer(1, 4)
 
 # Combine the layers to create a neural network
 neural_network = MultilayerPerceptron(layer1, layer2)
