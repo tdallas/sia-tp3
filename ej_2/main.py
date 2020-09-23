@@ -21,7 +21,7 @@ while(i < len(outputs)):
     outputs_normalized[i] = (outputs[i][0] - min_value) / (max_value - min_value)
     i += 1
 
-perceptron = SimplePerceptron(inputs, outputs_normalized, sigmoide, de_sigmoide, eta=0.001, iterations=1000)
+perceptron = SimplePerceptron(inputs, outputs_normalized, sigmoide, de_sigmoide, eta=0.1, iterations=1000)
 perceptron.train()
 
 i = 0
