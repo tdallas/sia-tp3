@@ -24,10 +24,9 @@ while(i < len(outputs)):
 perceptron = SimplePerceptron(inputs, outputs_normalized, sigmoide, de_sigmoide)
 perceptron.train()
 
-print("input: ", inputs[0])
-print("result value: ", perceptron.guess(inputs[0]))
-print("expected value: ", outputs_normalized[0])
-
-print("input: ", inputs[1])
-print("result value: ", perceptron.guess(inputs[1]))
-print('expected value: ', outputs_normalized[1])
+i = 0
+while(i < len(outputs_normalized)):
+    print("input: ", inputs[i])
+    print("expected value: ", outputs_normalized[i])
+    print("result value: ", perceptron.guess(inputs[i]))
+    i += 1
