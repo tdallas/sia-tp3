@@ -101,8 +101,9 @@ class MultilayerPerceptron():
         outputs = []
         input = inputs
         # input * first hidden layer
-        print(input)
+        # print(input, self.hidden_layers[0].synaptic_weights)
         input = self.__sigmoid(dot(input, self.hidden_layers[0].synaptic_weights))
+        # print('input despues de multiplicar', input)
         outputs.append(input)
         
         i = 1
@@ -122,9 +123,8 @@ class MultilayerPerceptron():
         return outputs
 
     def print_weights(self):
-        print('')
-        # print("    Hidden layers\n")
-        # for i in range(len(self.hidden_layers)):
-        #     print(self.hidden_layers[i].synaptic_weights)
-        # print("\n    Output layer 2 (1 neuron, with 4 inputs):")
-        # print(self.output_layer.synaptic_weights)
+        print("Hidden layers\n")
+        for i in range(len(self.hidden_layers)):
+            print(self.hidden_layers[i].synaptic_weights)
+        print("\nOutput layer weights:")
+        print(self.output_layer.synaptic_weights)
