@@ -26,7 +26,7 @@ class MultilayerPerceptron():
     def train(self, training_set_inputs, training_set_outputs, number_of_training_iterations):
         for _ in range(number_of_training_iterations):
             # Pass the training set through our neural network
-            output_from_layer_1, output_from_layer_2 = self.think(training_set_inputs)
+            outputs = self.think(training_set_inputs)
 
             # Calculate the error for layer 2 (The difference between the desired output
             # and the predicted output).
@@ -50,14 +50,11 @@ class MultilayerPerceptron():
     def think(self, inputs):
         outputs = []
         input = inputs
-        print('inputs', inputs)
-        for i in range(len(self.hidden_layers)):
-            print(i, ':',input, '|',self.hidden_layers[i].synaptic_weights)
-            input = self.__sigmoid(dot(input, self.hidden_layers[i].synaptic_weights))
+        for j in range(len(self.hidden_layers)):
+            input = self.__sigmoid(dot(input, self.hidden_layers[j].synaptic_weights))
             outputs.append(input)
-        ## output for output layer
-        print('output')
         outputs.append(self.__sigmoid(dot(input, self.output_layer.synaptic_weights)))
+        print(outputs)
         return outputs
 
     def print_weights(self):

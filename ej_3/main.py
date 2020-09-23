@@ -5,7 +5,7 @@ from multilayer_perceptron import MultilayerPerceptron, NeuronLayer
 random.seed(1)
 
 # Create layer 1 (5 neurons, each with 2 inputs)
-hidden_layer_1 = NeuronLayer(5, 4)
+hidden_layer_1 = NeuronLayer(5, 2)
 
 # Create layer 1 (5 neurons, each with 2 inputs)
 hidden_layer_2 = NeuronLayer(5, 5)
