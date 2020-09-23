@@ -1,30 +1,44 @@
-import numpy as numpy
-from multi_layer_perceptron import MultilayerPerceptron
+from numpy import exp, array, random, dot
+from multilayer_perceptron import MultilayerPerceptron, NeuronLayer
 
-#input
-_input = [[-1, -1], [-1,1], [1, -1], [1, 1]]
-_expected = [[-1], [1], [1], [-1]]
 
-learning_rate = 0.7
-momentum = 0.9
-test_p = 0.25
+#Seed the random number generator
+random.seed(1)
 
-beta = 0.3 #TODO: ver que valor poner
+# Create layer 1 (3 neurons, each with 2 inputs)
+layer1 = NeuronLayer(3, 2)
 
-def sigmoide(value):
-    return 1 / (1 + numpy.exp(-1  * value))
+# Create layer 2 (a single neuron with 3 inputs)
+layer2 = NeuronLayer(1, 3)
 
-def de_sigmoide(value):
-    return sigmoide(value) * (1 - sigmoide(value))
+# Combine the layers to create a neural network
+neural_network = MultilayerPerceptron(layer1, layer2)
 
-nn = MultilayerPerceptron(learning_rate, momentum, sigmoide, de_sigmoide, False, test_p)
+print("Stage 1) Random starting synaptic weights: ")
+neural_network.print_weights()
 
-nn.entry_layer(2)
-nn.add_hidden_layer(2)
-nn.output_layer(1)
+# The training set. We have 7 examples, each consisting of 3 input values
+# and 1 output value.
+training_set_inputs = array([[0, 0], [0,1], [1, 0], [1, 1]])
+training_set_outputs = array([[0], [1], [1], [0]])
 
-error = nn.train(_input, _expected, epochs=10000)
-#print(error)
+# Train the neural network using the training set.
+# Do it 60,000 times and make small adjustments each time.
+neural_network.train(training_set_inputs, training_set_outputs, 6000)
 
-for i in range(0, len(_input)):
-    print(str(_input[i]) + " -> " + str(nn.predict(_input[i])))
+print("Stage 2) New synaptic weights after training: ")
+neural_network.print_weights()
+
+# Test the neural network with a new situation.
+print("Stage 3) Considering a new situation [1, 1] -> ?: ")
+hidden_state, output = neural_network.think(array([0, 1]))
+print(output)
+
+hidden_state, output = neural_network.think(array([0, 0]))
+print(output)
+
+hidden_state, output = neural_network.think(array([1, 0]))
+print(output)
+
+hidden_state, output = neural_network.think(array([1, 1]))
+print(output)
