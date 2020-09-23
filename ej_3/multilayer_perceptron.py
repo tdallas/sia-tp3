@@ -50,11 +50,20 @@ class MultilayerPerceptron():
     def think(self, inputs):
         outputs = []
         input = inputs
-        for j in range(len(self.hidden_layers)):
-            input = self.__sigmoid(dot(input, self.hidden_layers[j].synaptic_weights))
+        # input * first hidden layer
+        input = self.__sigmoid(dot(input, self.hidden_layers[0].synaptic_weights))
+        outputs.append(input)
+        
+        # product between hidden layers
+        for i in range(1, len(self.hidden_layers)):
+            input = self.__sigmoid(dot(input, self.hidden_layers[i].synaptic_weights))
             outputs.append(input)
+
+        # last product
         outputs.append(self.__sigmoid(dot(input, self.output_layer.synaptic_weights)))
+        
         print(outputs)
+        # outputs size = #hiddenlayers + 1 
         return outputs
 
     def print_weights(self):
