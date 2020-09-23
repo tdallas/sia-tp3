@@ -36,12 +36,21 @@ class MultilayerPerceptron():
             print('deltas', deltas)
 
             # Calculate how much to adjust the weights by
-            layer1_adjustment = training_set_inputs.T.dot(layer1_delta)
-            layer2_adjustment = output_from_layer_1.T.dot(layer2_delta)
+            adjustments = self.get_adjustments(training_set_inputs, deltas, outputs)
+            print('adjustments',adjustments)
+            # layer1_adjustment = training_set_inputs.T.dot(layer1_delta)
+            # layer2_adjustment = output_from_layer_1.T.dot(layer2_delta)
 
             # Adjust the weights.
             self.hidden_layers[0].synaptic_weights += layer1_adjustment
             self.output_layer.synaptic_weights += layer2_adjustment
+
+    def get_adjustments(self, training_set_inputs, deltas, outputs):
+        adjustments = []
+        for index in (len(deltas)-1, 1):
+            adjustments.append(outputs[index].T.dot(deltas[index]))
+        adjustments.append(training_set_inputs.T.dot(deltas[0]))    
+        return adjustments
 
     def get_errors(self, training_expected_outputs, outputs):
         errors = []
