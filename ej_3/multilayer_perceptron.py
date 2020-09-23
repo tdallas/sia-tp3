@@ -65,9 +65,7 @@ class MultilayerPerceptron():
         current_hidden_layer = len(self.hidden_layers) - 1
         index = len(outputs) - 2
         while index >= 1:
-            print('adentro', index, previous_delta, previous_weights)
             previous_error = previous_delta.dot(previous_weights)
-            print(previous_error)
             errors.append(previous_error)
             previous_delta = previous_error * self.__sigmoid_derivative(outputs[index])
             deltas.append(previous_delta)
