@@ -43,10 +43,6 @@ class MultilayerPerceptron():
             self.hidden_layers[0].synaptic_weights += layer1_adjustment
             self.output_layer.synaptic_weights += layer2_adjustment
 
-#             # Calculate the error for layer 1 (By looking at the weights in layer 1,
-#             # we can determine by how much layer 1 contributed to the error in layer 2).
-#             layer1_error = layer2_delta.dot(self.output_layer.synaptic_weights.T)
-#             layer1_delta = layer1_error * self.__sigmoid_derivative(output_from_layer_1)
     def get_errors(self, training_expected_outputs, outputs):
         errors = []
         deltas = []
