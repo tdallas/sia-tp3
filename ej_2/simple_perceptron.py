@@ -22,9 +22,14 @@ class SimplePerceptron():
     def calculate_square_error(self, expected_value, prediction):
         return 0.5 * ((expected_value - prediction) ** 2)
  
-    def train(self):
+    def train(self, test_inputs, test_expected_values, delta=0.001):
+        test_accuracies = []
+        training_accuracies = []
+        iters = []
+        training_accuracy = 1
         # running till iterations
-        for _ in range(self.iterations):
+        for it in range(self.iterations):
+            training_correct_cases = 0
             # zip training inputs with corresponding expected values
             for input, expected_value in zip(self.training_inputs, self.training_expected_values):
                 # add bias=1 to input
@@ -33,9 +38,26 @@ class SimplePerceptron():
                 prediction = self.predict(input_with_bias)
                 # calculate error
                 error = expected_value - prediction
+                if(abs(error) < delta):
+                    training_correct_cases += 1
                 # update weights
                 self.weights = self.weights + (self.eta * error * self.de_activation_function(self.weights.T.dot(input_with_bias)) * input_with_bias.T) 
+            training_accuracy = (training_accuracy + (training_correct_cases/len(self.training_expected_values))) / 2
+            training_accuracies.append(training_accuracy)
+            test_correct_cases = 0
+            i = 0
+            while (i < len(test_expected_values)):
+                if(abs(test_expected_values[i] - self.guess(test_inputs[i])) < delta):
+                    test_correct_cases += 1
+                i += 1
+            test_accuracy = test_correct_cases / len(test_expected_values)
+            test_accuracies.append(test_accuracy)
+            iters.append(it)
+            print("Epoch: ", it)
+            print("Training accuracy: ", training_accuracy)
+            print("Test accuracy: ", test_accuracy)
         print("weights: ", self.weights)
+        return training_accuracies, test_accuracies, iters
 
     def guess(self, input):
         # add bias to input (for dot product stuff)
