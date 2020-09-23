@@ -37,6 +37,7 @@ class SimplePerceptron():
                 error = expected_value - prediction
                 # update weights
                 self.weights = self.weights + self.eta * error * input_with_bias
+        print("weights: ", self.weights)
 
     def guess(self, input):
         # add bias to input (for dot product stuff)
