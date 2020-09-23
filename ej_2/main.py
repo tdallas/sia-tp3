@@ -16,7 +16,6 @@ outputs = parser.get_outputs()
 outputs_normalized = numpy.zeros(len(outputs))
 max_value = numpy.max(outputs)
 min_value = numpy.min(outputs)
-
 i = 0
 while(i < len(outputs)):
     outputs_normalized[i] = (outputs[i][0] - min_value) / (max_value - min_value)
