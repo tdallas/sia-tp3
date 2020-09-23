@@ -1,18 +1,20 @@
 from numpy import exp, array, random, dot
 from multilayer_perceptron import MultilayerPerceptron, NeuronLayer
 
-
 #Seed the random number generator
 random.seed(1)
 
-# Create layer 1 (4 neurons, each with 2 inputs)
-layer1 = NeuronLayer(4, 2)
+# Create layer 1 (5 neurons, each with 2 inputs)
+hidden_layer_1 = NeuronLayer(5, 2)
+
+# Create layer 1 (5 neurons, each with 2 inputs)
+hidden_layer_2 = NeuronLayer(4, 2)
 
 # Create layer 2 (a single neuron with 4 inputs)
-layer2 = NeuronLayer(1, 4)
+layer2 = NeuronLayer(1, 5)
 
 # Combine the layers to create a neural network
-neural_network = MultilayerPerceptron(layer1, layer2)
+neural_network = MultilayerPerceptron([hidden_layer_1, hidden_layer_2], layer2)
 
 print("Stage 1) Random starting synaptic weights: ")
 neural_network.print_weights()
@@ -24,7 +26,7 @@ training_set_outputs = array([[0], [1], [1], [0]])
 
 # Train the neural network using the training set.
 # Do it 60,000 times and make small adjustments each time.
-neural_network.train(training_set_inputs, training_set_outputs, 6000)
+neural_network.train(training_set_inputs, training_set_outputs, 20000)
 
 print("Stage 2) New synaptic weights after training: ")
 neural_network.print_weights()

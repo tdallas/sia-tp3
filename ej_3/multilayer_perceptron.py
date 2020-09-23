@@ -5,9 +5,9 @@ class NeuronLayer():
         self.synaptic_weights = 2 * random.random((number_of_inputs_per_neuron, number_of_neurons)) - 1
 
 class MultilayerPerceptron():
-    def __init__(self, layer1, layer2):
-        self.layer1 = layer1
-        self.layer2 = layer2
+    def __init__(self, hidden_layers, output_layer):
+        self.hidden_layers = hidden_layers
+        self.output_layer = output_layer
 
     # The Sigmoid function, which describes an S shaped curve.
     # We pass the weighted sum of the inputs through this function to
@@ -35,7 +35,7 @@ class MultilayerPerceptron():
 
             # Calculate the error for layer 1 (By looking at the weights in layer 1,
             # we can determine by how much layer 1 contributed to the error in layer 2).
-            layer1_error = layer2_delta.dot(self.layer2.synaptic_weights.T)
+            layer1_error = layer2_delta.dot(self.output_layer.synaptic_weights.T)
             layer1_delta = layer1_error * self.__sigmoid_derivative(output_from_layer_1)
 
             # Calculate how much to adjust the weights by
@@ -43,18 +43,19 @@ class MultilayerPerceptron():
             layer2_adjustment = output_from_layer_1.T.dot(layer2_delta)
 
             # Adjust the weights.
-            self.layer1.synaptic_weights += layer1_adjustment
-            self.layer2.synaptic_weights += layer2_adjustment
+            self.hidden_layers[0].synaptic_weights += layer1_adjustment
+            self.output_layer.synaptic_weights += layer2_adjustment
 
     # The neural network thinks.
     def think(self, inputs):
-        output_from_layer1 = self.__sigmoid(dot(inputs, self.layer1.synaptic_weights))
-        output_from_layer2 = self.__sigmoid(dot(output_from_layer1, self.layer2.synaptic_weights))
+        output_from_layer1 = self.__sigmoid(dot(inputs, self.hidden_layers[0].synaptic_weights))
+        output_from_layer2 = self.__sigmoid(dot(output_from_layer1, self.output_layer.synaptic_weights))
         return output_from_layer1, output_from_layer2
 
     # The neural network prints its weights
     def print_weights(self):
-        print("    Layer 1 (4 neurons, each with 3 inputs):")
-        print(self.layer1.synaptic_weights)
-        print("    Layer 2 (1 neuron, with 4 inputs):")
-        print(self.layer2.synaptic_weights)
+        print("    Hidden layers\n")
+        for i in range(len(self.hidden_layers)):
+            print(self.hidden_layers[i].synaptic_weights)
+        print("\n    Output layer 2 (1 neuron, with 4 inputs):")
+        print(self.output_layer.synaptic_weights)
