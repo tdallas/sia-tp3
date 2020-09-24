@@ -16,7 +16,7 @@ layer2 = NeuronLayer(1, 5)
 # Combine the layers to create a neural network
 neural_network = MultilayerPerceptron([hidden_layer_1, hidden_layer_2, hidden_layer_3, hidden_layer_4, hidden_layer_5], layer2)
 
-# print("Stage 1) Random starting synaptic weights: ")
+# print("Stage 1) Random starting synaptic weights: ")a
 
 # The training set. We have 7 examples, each consisting of 3 input values
 # and 1 output value.
