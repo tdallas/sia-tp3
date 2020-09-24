@@ -28,7 +28,7 @@ To execute first problem:
 
 To execute second problem:
 
-`python ej-3/main_pair_number.py`
+`python ej-3/main_even_number.py`
 
 To execute a variant of the second problem with prime numbers:
 
