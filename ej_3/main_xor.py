@@ -32,23 +32,22 @@ print("Stage 2) New synaptic weights after training: ")
 
 # Test the neural network with a new situation.
 # print("Stage 3) Considering a new situation [1, 1] -> ?: ")
-print('TERMINO')
 output = neural_network.think(array([0, 1]))
 # print('todo el output', output)
-print('[0,1]',output[-1])
+print('[0 xor 1] is:',output[-1])
 print('\n')
 
 output = neural_network.think(array([0, 0]))
 # print('todo el output', output)
-print('[0,0]',output[-1])
+print('[0 xor 0] is: ',output[-1])
 print('\n')
 
 output = neural_network.think(array([1, 0]))
 # print('todo el output', output)
-print('[1,0]',output[-1])
+print('[1 xor 0] is: ',output[-1])
 print('\n')
 
 output = neural_network.think(array([1, 1]))
 # print('todo el output', output)
-print('[1,1]', output[-1])
+print('[1 xor 1] is: ', output[-1])
 print('\n')
