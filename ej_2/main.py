@@ -3,7 +3,7 @@ import numpy as numpy
 from simple_perceptron import SimplePerceptron
 from parse import Parser
 
-parser = Parser('input.csv', 'output.csv')
+parser = Parser('ej_2/input.csv', 'ej_2/output.csv')
 
 def sigmoide(value):
     return 1 / (1 + numpy.exp(-1  * value))
