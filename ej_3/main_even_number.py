@@ -19,12 +19,12 @@ neural_network = MultilayerPerceptron([hidden_layer_1], layer2)
 
 # The training set. We have 7 examples, each consisting of 3 input values
 # and 1 output value.
-training_set_inputs = array(parser.get_pixels()[:3])
-training_set_outputs = array([[1], [0], [1]])
+training_set_inputs = array(parser.get_pixels())
+training_set_outputs = array([[1], [0], [1], [0],[1], [0],[1], [0],[1], [0]])
 
 # Train the neural network using the training set.
 # Do it 60,000 times and make small adjustments each time.
-neural_network.train(training_set_inputs, training_set_outputs, 1000000)
+neural_network.train(training_set_inputs, training_set_outputs, 10000)
 
 # print("Stage 2) New synaptic weights after training: ")
 # neural_network.print_weights()
