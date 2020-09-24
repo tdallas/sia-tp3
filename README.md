@@ -18,17 +18,21 @@ To change the parameters of each program, you have to edit the python code. (eta
 
 To see metrics and graphs execute:
 
-`python ej-1/metrics.py`
+`python ej-2/metrics.py`
 
 ### Ejercicio 3
 
 To execute first problem:
 
-`python ej-1/main_xor.py`
+`python ej-3/main_xor.py`
 
 To execute second problem:
 
-`python ej-1/main_number.py`
+`python ej-3/main_pair_number.py`
+
+To execute a variant of the second problem with prime numbers:
+
+`python ej-3/main_prime_number.py`
 
 ## Authors
 
