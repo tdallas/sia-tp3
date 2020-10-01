@@ -26,7 +26,7 @@ class SimplePerceptron():
         test_accuracies = []
         training_accuracies = []
         iters = []
-        training_accuracy = 1
+        training_accuracy = 0
         # running till iterations
         for it in range(self.iterations):
             training_correct_cases = 0
@@ -42,8 +42,8 @@ class SimplePerceptron():
                     training_correct_cases += 1
                 # update weights
                 self.weights = self.weights + (self.eta * error * self.de_activation_function(self.weights.T.dot(input_with_bias)) * input_with_bias.T) 
-            training_accuracy = (training_accuracy + (training_correct_cases/len(self.training_expected_values))) / 2
-            training_accuracies.append(training_accuracy)
+
+            training_accuracies.append(training_correct_cases/len(self.training_expected_values))
             test_correct_cases = 0
             i = 0
             while (i < len(test_expected_values)):

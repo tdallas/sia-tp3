@@ -22,7 +22,7 @@ while(i < len(outputs)):
     outputs_normalized[i] = (outputs[i][0] - min_value) / (max_value - min_value)
     i += 1
 
-split_i = 150
+split_i = 50
 train_inputs = inputs[:split_i]
 train_outputs = outputs_normalized[:split_i]
 test_inputs = inputs[split_i:]
@@ -30,6 +30,9 @@ test_outputs = outputs_normalized[split_i:]
 
 perceptron = SimplePerceptron(train_inputs, train_outputs, sigmoide, de_sigmoide, eta=0.1, iterations=300)
 training_accuracies, test_accuracies, iters = perceptron.train(test_inputs, test_outputs, delta=0.001, print_data=True)
+
+print(training_accuracies)
+print(test_accuracies)
 
 plt.plot(iters, training_accuracies, label="train")
 plt.plot(iters, test_accuracies, label="test")
